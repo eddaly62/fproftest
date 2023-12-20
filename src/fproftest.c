@@ -8,13 +8,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <fcntl.h>
 #include <fprof.h>
-
-
-//#if 0
-#define MAX_LEN	64
-#define MAX_FUNCTIONS	4096
-
+#include <unistd.h>
 
 enum ETIME {START = 0, END = 1};
 
@@ -41,6 +37,8 @@ void callback1(char *s){
 void do_nothing1(void) {
 	printf("do nothing 1\n");
 	(*relut[0].cb)(relut[0].pattern);
+	// create an error
+	open("nofile.txt", O_RDONLY);
 }
 
 void do_nothing2(void) {
@@ -49,7 +47,11 @@ void do_nothing2(void) {
 }
 
 void do_something(void) {
+	int fd;
+	char buf[10];
 	(*relut[0].cb)(relut[0].pattern);
+	// make an error
+    read(fd, buf, 10);
 }
 
 // Determine elapse time
