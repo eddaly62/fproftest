@@ -83,10 +83,16 @@ double elapsed_time(enum ETIME sts, struct timeval *start, struct timeval *end)
 	return elapsed;
 }
 
+void sig_handler(int sig) {
+	printf("sig handler reached\n");
+}
 
 int main(int argc, char *argv[])
 {
 	double elapsedt=0;
+
+	signal(SIGALRM, sig_handler);
+	alarm(10);
 
 	elapsedt = elapsed_time(START, &start, &end);
 	sleep(1);

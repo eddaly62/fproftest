@@ -17,8 +17,7 @@ DFLAGS=-MP -MD
 #TLIBS+=-L/usr/local/lib -Wl,-R/usr/local/lib -lallegro_primitives -lallegro -lallegro_image
 #TLIBS+=-lallegro_color -lallegro_main
 TLIBS=-L/usr/local/lib -Wl,-R/usr/local/lib -lfprof
-TLIBS+= -lpthread -lm -ldl
-
+TLIBS+= -lpthread -lm -ldl -lrt
 # Test builds
 TSRC=src
 TSRCS=$(wildcard $(TSRC)/*.c)
